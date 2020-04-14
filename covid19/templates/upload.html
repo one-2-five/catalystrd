@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+        <center>
+            <div class="jumbotron">
+                <h1 class="display-4">Covid Xray File image Upload window</h1>
+                <p class="lead">Once file uploaded page will stay at same window. Please click Xray tab to see the uplaoded files</p>
+                <hr class="my-4">
+                <form method="POST" enctype="multipart/form-data">
+                    <!-- Very Important csrf Token -->
+                    {% csrf_token %}
+                    <table>
+                        {{ form.as_table }}
+                    </table>
+                    <input type="submit" class="btn btn-primary btn-lg" name="register">
+            </div>
+        </center>
+
+
+{% endblock %}

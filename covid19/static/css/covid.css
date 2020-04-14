@@ -1,0 +1,20 @@
+#isItLoaded {
+    display: none;
+  }#loading {
+    position: relative;
+    display: inline-block;
+  }
+
+#isItDisplayed{
+    display: none;
+  }#dontshow {
+    position: relative;
+    display: inline-block;
+  }
+
+  img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+

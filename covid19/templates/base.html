@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/covid.css"/>
+    <script type="text/javascript" src="/static/js/covid.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie-edge">
+    <title>Covid19 Xray App</title>
+
+</head>
+{% csrf_token %}
+<body>
+
+  <nav aria-label="breadcrumb">
+    <ol class='breadcrumb'>
+      {% if not request.user.is_authenticated %}
+        <li><a href='/accounts/login/'>Login</a></li>
+      {% else %}
+        <li class="breadcrumb-item"><a href='/xray/'>Home</a> </li>
+        {% if user.username == "admin" %}
+          <li class='breadcrumb-item'><a href="{% url 'admin:index' %}" target="_blank">Admin Page</a></li>
+        {% endif %}
+          <li class='breadcrumb-item'><a href="/xray/upload" ><style></style>Xray Upload</a></li>
+          <ul class="navbar-nav ml-auto nav-flex-icons">
+          <li class="nav-item">
+          <li class='breadcrumb-item float-right'><a href="/accounts/logout/?next=/xray">Logout</a></li>
+          </li>
+    </ul>
+      {% endif %}
+    </ol>
+  </nav>
+
+{% block content %}
+
+{% endblock content %}
+</body>
+</html>

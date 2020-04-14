@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="up" id="listid" > 
+  <table class="table table-striped">
+    <thead class="border-bottom font-weight-bold">
+      <tr>
+          <td>ID#</td>  <td>ImageRef</td>
+          <td>Description</td> <td>Uploaded</td><td>Updated</td><td>FileType</td>
+          <td>Result</td><td>Actions</td>
+      </tr>
+    </thead>
+    <tbody>
+      {% for xray in xray_list %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{xray.document}}</td>
+        <td>{{xray.description}}</td>
+        <td>{{xray.created}}</td>
+        <td>{{xray.updated}}</td>
+        <td>{{xray.filetype}}</td>
+		    <td>{{xray.covidstate}}</td>
+        <td>
+          <form action="/xray/trainmodel/{{ xray.id }}/" method="post" class="d-inline" onclick = "showMessage()" >{% csrf_token %}
+            <button id="processpredict" name="processpredict{{ xray.id }}" type="submit" class="btn">
+            <i class="fas fa-angle-double-right fa-2x" style='font-size:36px;color:green'></i></a></button>
+          </form>
+		    </td>
+		    <td>
+            <form action="{% url 'xray_delete' xray.id %}" method="post" class="d-inline">{% csrf_token %} 
+              <button id="deleteitem" name="deleteitem{{ xray.id }}" type="submit" class="btn">
+               <i class="fas fa-trash-alt fa-2x" style='font-size:36px;color:red'></i></button>
+              </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+  <div class="up" id="up" style="display:none;">{% csrf_token %}
+    <img src='/static/images/load.gif' alt="loading"/>
+  </div>
+
+{% endblock content %}
