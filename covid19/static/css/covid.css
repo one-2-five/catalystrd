@@ -1,8 +1,9 @@
 #isItLoaded {
     display: none;
   }#loading {
-    position: relative;
-    display: inline-block;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
 
 #isItDisplayed{
@@ -13,8 +14,17 @@
   }
 
   img {
+    position: relative;
     display: block;
     margin-left: auto;
     margin-right: auto;
+    
   }
 
+#up {
+    position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -100px;
+  } 
