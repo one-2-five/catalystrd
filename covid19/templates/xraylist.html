@@ -2,13 +2,13 @@
 
 {% block content %}
 
-<div class="up" id="listid" > 
+<div id="listid" > 
   <table class="table table-striped">
     <thead class="border-bottom font-weight-bold">
       <tr>
           <td>ID#</td>  <td>ImageRef</td>
           <td>Description</td> <td>Uploaded</td><td>Updated</td><td>FileType</td>
-          <td>Result</td><td>Actions</td>
+          <td>Result</td><td>Success?</td><td>Actions</td>
       </tr>
     </thead>
     <tbody>
@@ -20,7 +20,19 @@
         <td>{{xray.created}}</td>
         <td>{{xray.updated}}</td>
         <td>{{xray.filetype}}</td>
-		    <td>{{xray.covidstate}}</td>
+        <td>{{xray.covidstate}}</td>
+        <td>
+        
+        <form action="{% url 'xray_update' xray.id %}" method="post">{% csrf_token %}
+          {% if xray.predictstate == True %}
+          <input type="checkbox" name="predictstate" id="predictstate" checked>
+          {% else %}
+          <input type="checkbox" name="predictstate" id="predictstate">
+          {% endif %}
+          <input type="submit" value="Submit">
+        </form>
+        
+      </td>
         <td>
           <form action="/xray/trainmodel/{{ xray.id }}/" method="post" class="d-inline" onclick = "showMessage()" >{% csrf_token %}
             <button id="processpredict" name="processpredict{{ xray.id }}" type="submit" class="btn">

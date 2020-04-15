@@ -11,5 +11,6 @@ urlpatterns = [
     path('upload/', views.model_form_upload, name='model_form_upload'),
     path('trainmodel/<int:id>/', views.trainmodel, name='trainmodel'),
     path('delete/<int:id>/', views.xray_delete, name='xray_delete'),
+    path('update/<int:id>/', views.xray_update, name='xray_update'),
 
 ]

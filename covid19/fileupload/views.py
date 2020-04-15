@@ -48,11 +48,25 @@ def trainmodel(request,id=0):
         print(e)
         status_of_covid ="Failed to Process"
         status_of_training="False"
-    Document.objects.filter(pk=id).update(training_status=status_of_training)
+    Document.objects.filter(pk=id).update(training_status=status_of_training)# or obj.update(training_status=status_of_training)
     Document.objects.filter(pk=id).update(covidstate=status_of_covid)
     Document.objects.filter(pk=id).update(updated=updatedtime)
     return redirect('/xray/')
-    
+
+def xray_update(request,id=0):
+    if request.user.is_authenticated:
+        xray_item=Document.objects.get(pk=id)
+        try:
+            request.POST['predictstate']
+            print(request.POST['predictstate'])
+            xray_item.predictstate = "True"
+        except:
+            xray_item.predictstate = "False"
+        xray_item.save()
+        return redirect('/xray/')
+    else:
+        return redirect('/xray/')
+
 def xray_delete(request,id=0):
     if request.user.is_authenticated:
         xray_item=Document.objects.get(pk=id)

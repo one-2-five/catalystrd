@@ -38,6 +38,7 @@ def train_input_model(filepath):
         return resultStatus
     except:
         print('Executing predict.py Failed')
+        time.sleep(10)
         resultStatus = 'Failed to Process'
         deletecontents(destination)
         return resultStatus

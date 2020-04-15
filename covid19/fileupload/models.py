@@ -13,5 +13,6 @@ class Document(models.Model):
     training_status = models.BooleanField(default=False)
     covidstate = models.CharField(max_length=255, blank=True,default='Not Processed')
     filetype = models.CharField(max_length=10, blank=False, default='jpg')
+    predictstate = models.BooleanField(default=False)
     def __str__(self):
         return self.description + ": " + self.creator
