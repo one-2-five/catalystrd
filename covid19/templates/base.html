@@ -25,6 +25,7 @@
           <li class='breadcrumb-item'><a href="{% url 'admin:index' %}" target="_blank">Admin Page</a></li>
         {% endif %}
           <li class='breadcrumb-item'><a href="/xray/upload" ><style></style>Xray Upload</a></li>
+          <li class='breadcrumb-item active'>Welcome {{request.user}}</li>
           <ul class="navbar-nav ml-auto nav-flex-icons">
           <li class="nav-item">
           <li class='breadcrumb-item float-right'><a href="/accounts/logout/?next=/xray">Logout</a></li>

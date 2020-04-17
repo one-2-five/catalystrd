@@ -16,7 +16,6 @@ def train_input_model(filepath):
         basepath = "C:\\Users\\eshit\\Desktop\\covid19\\covid19\\documents\\"
         filepath = filepath.lower()
         source = basepath + filepath  
-
         destination  = "C:\\wamp64\\www\\uploads\\"
         print("Starting Copy")
         shutil.copy(source,destination)
@@ -57,17 +56,3 @@ def deletecontents(destination):
         except Exception as e:
             print('Failed to delete %s. Reason: %s' % (file_path, e))    
         
-"""
-def train_input_model(filepath):
-    #print("Inside trainmodel function")
-    try:
-        print('Executing predict.py and filepath is ', filepath)
-        #os.system('python C:\Repo\covid-cxr-master\src\predict.py' filepath)
-        subprocess.run(["python", "C:\Repo\covid-cxr-master\src\predict.py", filepath])
-        print('Executing predict.py success')
-        return true
-    except:
-        print('Executing predict.py Failed')
-        #time.sleep(5)
-        return False
-"""

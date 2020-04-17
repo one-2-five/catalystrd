@@ -17,6 +17,7 @@ def model_form_upload(request):
                 obj = form.save(commit=False)
                 filepath = obj.document
                 obj.filetype = findfiletype(filepath)
+                obj.creator = request.user
                 form.save()
                 return redirect('/xray/upload/')
         else:
@@ -29,7 +30,11 @@ def model_form_upload(request):
 
 def xray_list(request):
     if request.user.is_authenticated:
-        content = {'xray_list': Document.objects.all()}
+        if request.user == "admin":
+            content = {'xray_list': Document.objects.all()}
+        else:
+            content = {'xray_list': Document.objects.filter(creator=request.user)}
+
         return render(request, "xraylist.html", content)
     else:
         return redirect('%s?next=%s' % (settings.LOGIN_URL, request.path))
