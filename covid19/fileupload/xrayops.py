@@ -49,6 +49,8 @@ def train_input_model(filepath):
             basepath = os.getcwd()+'\\documents\\'
             source = basepath + filepath
             destinationbase  = os.getcwd()+'\\fileupload\\uploads\\'
+            if not os.path.exists(destinationbase):
+                os.makedirs(destinationbase)
             destinationfilename = filepath.lower()
             destination = destinationbase+destinationfilename
             print(os.getcwd())
