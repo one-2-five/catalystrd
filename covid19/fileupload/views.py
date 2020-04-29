@@ -49,7 +49,7 @@ def trainmodel(request,id=0):
         status_of_training="True"
         #print("Try works")
     except Exception as e:
-        print("Exception follows")
+        print("Exception follows, this is from views.py")
         print(e)
         status_of_covid ="Failed to Process"
         status_of_training="False"

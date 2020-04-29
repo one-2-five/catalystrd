@@ -13,27 +13,29 @@ def findfiletype(filename):
 
 def train_input_model(filepath):
     try:
+        print("Current dir is ",os.getcwd())
         if "Win" not in platform.platform():
             print("Os not Windows")
-            basepath = "./documents/"
+            basepath = os.getcwd()+"/documents/"
             source = basepath + filepath
-            destinationbase  = "./fileupload/uploads/"
+            destinationbase  = os.getcwd()+"/fileupload/uploads/"
             destinationfilename = filepath.lower()
             destination = destinationbase+destinationfilename
             print("Starting Copy")
             shutil.copy(source,destination)
             print("Executing predict.py")
             os.chdir('./fileupload/')
-            subprocess.check_output("python ./predict.py",shell=True,stderr=subprocess.STDOUT)
+            #subprocess.check_output("python ./predict.py",shell=True,stderr=subprocess.STDOUT)
             output=subprocess.check_output("python ./predict.py",shell=True,stderr=subprocess.STDOUT)
             print("#############################################################")
             print(output)
-            deletecontents(destinationbase)
+            print(destinationbase)
             if 'non-COVID-19' in str(output):
                 resultStatus = 'Negative'
             else:
                 resultStatus = 'Positive'
             print('Executing predict.py success')
+            deletecontents(destinationbase)
             return resultStatus
         else:
             print("OS is Windows")
@@ -48,8 +50,9 @@ def train_input_model(filepath):
             print("Executing predict.py")
             os.chdir('.\\fileupload\\')
             #time.sleep(10)
-            subprocess.check_output("python .\\predict.py",shell=True,stderr=subprocess.STDOUT)
-            output=subprocess.check_output("python .\\predict.py",shell=True,stderr=subprocess.STDOUT)
+            #subprocess.check_output("python .\\predict.py",shell=True,stderr=subprocess.STDOUT)
+            output=subprocess.check_output("python .\predict.py",shell=True,stderr=subprocess.STDOUT)
+            #os.chdir('..')
             print("#############################################################")
             print(output)
             deletecontents(destinationbase)
@@ -60,6 +63,7 @@ def train_input_model(filepath):
             print('Executing predict.py success')
             return resultStatus
     except subprocess.CalledProcessError as e:
+        os.chdir('..')
         print("command '{}' return with error (code {}): {}".format(e.cmd, e.returncode, e.output))
         print('Executing predict.py Failed, This coming from xrayops.py')
         #time.sleep(10)
