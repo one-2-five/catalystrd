@@ -77,6 +77,7 @@ def train_input_model(filepath):
         resultStatus = 'Failed to Process'
         deletecontents(destinationbase)
         return resultStatus
+    os.chdir(BASE_DIR)
 
 def deletecontents(destinationbase):
     folder = destinationbase
@@ -90,3 +91,4 @@ def deletecontents(destinationbase):
             print('Deleting copied files')
         except Exception as e:
             print('Failed to delete %s. Reason: %s' % (file_path, e))
+    os.chdir(BASE_DIR)
