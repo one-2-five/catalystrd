@@ -22,6 +22,8 @@ def train_input_model(filepath):
             destinationfilename = filepath.lower()
             destination = destinationbase+destinationfilename
             print("Starting Copy")
+            print("Source is ", source)
+            print("Destination is ",destination)
             shutil.copy(source,destination)
             print("Executing predict.py")
             os.chdir('./fileupload/')
