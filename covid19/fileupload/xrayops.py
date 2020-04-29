@@ -36,15 +36,18 @@ def train_input_model(filepath):
             print('Executing predict.py success')
             return resultStatus
         else:
-            basepath = ".\\documents\\"
+            print("OS is Windows")
+            basepath = os.getcwd()+'\\documents\\'
             source = basepath + filepath
-            destinationbase  = ".\\fileupload\\uploads\\"
+            destinationbase  = os.getcwd()+'\\fileupload\\uploads\\'
             destinationfilename = filepath.lower()
             destination = destinationbase+destinationfilename
+            print(os.getcwd())
             print("Starting Copy")
             shutil.copy(source,destination)
             print("Executing predict.py")
             os.chdir('.\\fileupload\\')
+            #time.sleep(10)
             subprocess.check_output("python .\\predict.py",shell=True,stderr=subprocess.STDOUT)
             output=subprocess.check_output("python .\\predict.py",shell=True,stderr=subprocess.STDOUT)
             print("#############################################################")
@@ -58,7 +61,7 @@ def train_input_model(filepath):
             return resultStatus
     except subprocess.CalledProcessError as e:
         print("command '{}' return with error (code {}): {}".format(e.cmd, e.returncode, e.output))
-        print('Executing predict.py Failed')
+        print('Executing predict.py Failed, This coming from xrayops.py')
         #time.sleep(10)
         resultStatus = 'Failed to Process'
         deletecontents(destinationbase)
@@ -75,5 +78,4 @@ def deletecontents(destinationbase):
                 shutil.rmtree(file_path)
             print('Deleting copied files')
         except Exception as e:
-            print('Failed to delete %s. Reason: %s' % (file_path, e))    
-        
+            print('Failed to delete %s. Reason: %s' % (file_path, e))
