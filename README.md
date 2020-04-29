@@ -6,15 +6,15 @@ Steps to be followed
 
 1.	Install Ananconda , follow  https://docs.anaconda.com/anaconda/install/
 2.	Create your env ref: https://docs.conda.io/projects/conda/en/4.6.0/_downloads/52a95608c49671267e40c689e0bc00ca/conda-cheatsheet.pdf 
-3.	Change to newly created ENV using below command
+3.	Change to newly created ENV using command
     #conda activate envname
-4.	Install python version 3.7.7 using below command 
+4.	Install python version 3.7.7 using command 
     #conda install python=3.7.7
-5.	Install packages required for this setup using below command
+5.	Install packages required for this setup using command
     #pip install -r req.txt
 
     req.txt file you will find in this repo : "covid19webapp/covid19/"
     
-6.	Run Django server using below command
-#python manage.py runserver
+6.	Run Django server using  command
+    #python manage.py runserver
 
