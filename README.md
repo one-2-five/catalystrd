@@ -18,6 +18,8 @@ Steps to be followed
 6.	Run Django server using  command
     #python manage.py runserver
     
+    Access your application using http://127.0.0.1:8000/xray url. 
+    
 7.  default username is admin and password is admin
     please change once you login in admin console
 
