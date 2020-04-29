@@ -58,7 +58,7 @@ def train_input_model(filepath):
             os.chdir('.\\fileupload\\')
             #time.sleep(10)
             #subprocess.check_output("python .\\predict.py",shell=True,stderr=subprocess.STDOUT)
-            output=subprocess.check_output("python .\predict.py",shell=True,stderr=subprocess.STDOUT)
+            output=subprocess.check_output("python .\\predict.py",shell=True,stderr=subprocess.STDOUT)
             #os.chdir('..')
             print("#############################################################")
             print(output)

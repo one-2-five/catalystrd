@@ -11,9 +11,9 @@ Steps to be followed
 4.	Install python version 3.7.7 using command 
     #conda install python=3.7.7
 5.	Install packages required for this setup using command
-    #pip install -r req.txt
+    #pip install -r requirements.txt
 
-    req.txt file you will find in this repo : "covid19webapp/covid19/"
+    requirements.txt file you will find in this repo : "covid19webapp/covid19/"
     
 6.	Run Django server using  command
     #python manage.py runserver
