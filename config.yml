@@ -1,0 +1,5 @@
+MODELPATH: 'F:/AI/covid/WebUI/covid-cxr-master/model260420.h5'
+CLASS_INDEX: 'F:/AI/covid/WebUI/covid-cxr-master/classindex260420.pkl'
+INPUTPATH: 'F:/AI/covid/covid-cxr-master/data/processed/shtest/'
+CLASSES: ['non-COVID-19', 'COVID-19']
+IMGDIM: [224, 224]
