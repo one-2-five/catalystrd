@@ -2,6 +2,7 @@ import filetype
 import time 
 import os, subprocess
 import shutil 
+import platform
 
 def findfiletype(filename):
     try:
@@ -12,39 +13,59 @@ def findfiletype(filename):
 
 def train_input_model(filepath):
     try:
-        #print("Inside trainmodel function")
-        basepath = "C:\\Users\\eshit\\Desktop\\covid19\\covid19\\documents\\"
-        filepath = filepath.lower()
-        source = basepath + filepath  
-        destination  = "C:\\wamp64\\www\\uploads\\"
-        print("Starting Copy")
-        shutil.copy(source,destination)
-        print("Executing predict.py")
-        command = "python C:\Repo\covid-cxr-master\src\predict.py " 
-        #time.sleep(3)
-        #output="non-COVID-19"
-        output=subprocess.check_output("python C:/Repo/covid-cxr-master/src/predict.py",shell=True,stderr=subprocess.STDOUT)
-        print("#############################################################")
-        print(output)
-        deletecontents(destination)
-        if 'non-COVID-19' in str(output):
-            resultStatus = 'Negative'
-#        elif 'COVID-19 NEGATIVE' in str(output):
-#            resultStatus = 'COVID-19 NEGATIVE'
+        if "Win" not in platform.platform():
+            print("Os not Windows")
+            basepath = "./documents/"
+            source = basepath + filepath
+            destinationbase  = "./fileupload/uploads/"
+            destinationfilename = filepath.lower()
+            destination = destinationbase+destinationfilename
+            print("Starting Copy")
+            shutil.copy(source,destination)
+            print("Executing predict.py")
+            os.chdir('./fileupload/')
+            subprocess.check_output("python ./predict.py",shell=True,stderr=subprocess.STDOUT)
+            output=subprocess.check_output("python ./predict.py",shell=True,stderr=subprocess.STDOUT)
+            print("#############################################################")
+            print(output)
+            deletecontents(destinationbase)
+            if 'non-COVID-19' in str(output):
+                resultStatus = 'Negative'
+            else:
+                resultStatus = 'Positive'
+            print('Executing predict.py success')
+            return resultStatus
         else:
-            resultStatus = 'Positive'
-        print('Executing predict.py success')
-        return resultStatus
-    except:
+            basepath = ".\\documents\\"
+            source = basepath + filepath
+            destinationbase  = ".\\fileupload\\uploads\\"
+            destinationfilename = filepath.lower()
+            destination = destinationbase+destinationfilename
+            print("Starting Copy")
+            shutil.copy(source,destination)
+            print("Executing predict.py")
+            os.chdir('.\\fileupload\\')
+            subprocess.check_output("python .\\predict.py",shell=True,stderr=subprocess.STDOUT)
+            output=subprocess.check_output("python .\\predict.py",shell=True,stderr=subprocess.STDOUT)
+            print("#############################################################")
+            print(output)
+            deletecontents(destinationbase)
+            if 'non-COVID-19' in str(output):
+                resultStatus = 'Negative'
+            else:
+                resultStatus = 'Positive'
+            print('Executing predict.py success')
+            return resultStatus
+    except subprocess.CalledProcessError as e:
+        print("command '{}' return with error (code {}): {}".format(e.cmd, e.returncode, e.output))
         print('Executing predict.py Failed')
-        time.sleep(10)
+        #time.sleep(10)
         resultStatus = 'Failed to Process'
-        deletecontents(destination)
+        deletecontents(destinationbase)
         return resultStatus
-        #time.sleep(5)
 
-def deletecontents(destination):
-    folder = destination
+def deletecontents(destinationbase):
+    folder = destinationbase
     for filename in os.listdir(folder):
         file_path = os.path.join(folder, filename)
         try:

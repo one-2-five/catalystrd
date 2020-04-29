@@ -21,10 +21,6 @@ def predictInstance(x, model):
         probsPredicted = y
     return probsPredicted
 
-
-
-
-
 def predictImage(imageDirectory=None):
 
     # Load Config.YML
