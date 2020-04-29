@@ -3,6 +3,7 @@ import time
 import os, subprocess
 import shutil 
 import platform
+from covid19.settings import BASE_DIR
 
 def findfiletype(filename):
     try:
@@ -14,11 +15,15 @@ def findfiletype(filename):
 def train_input_model(filepath):
     try:
         print("Current dir is ",os.getcwd())
+        os.chdir(BASE_DIR)
+        print("Current dir is ",os.getcwd())
         if "Win" not in platform.platform():
             print("Os not Windows")
             basepath = os.getcwd()+"/documents/"
             source = basepath + filepath
             destinationbase  = os.getcwd()+"/fileupload/uploads/"
+            if not os.path.exists(destinationbase):
+                os.makedirs(destinationbase)
             destinationfilename = filepath.lower()
             destination = destinationbase+destinationfilename
             print("Starting Copy")
