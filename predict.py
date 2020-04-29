@@ -28,7 +28,7 @@ def predictInstance(x, model):
 def predictImage(imageDirectory=None):
 
     # Load Config.YML
-    cfg = yaml.full_load(open("F:/AI/covid/WebUI/covid-cxr-master/config.yml", 'r'))
+    cfg = yaml.full_load(open("./config.yml", 'r'))
 
     # Restore the model and class indices
     model = load_model(cfg['MODELPATH'], compile=False)
