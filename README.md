@@ -17,4 +17,10 @@ Steps to be followed
     
 6.	Run Django server using  command
     #python manage.py runserver
+    
+7.  default username is admin and password is admin
+    please change once you login in admin console
+
+8.  Create normal user in admin console
+
 
