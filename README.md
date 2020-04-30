@@ -1,8 +1,7 @@
 This is a simple web application based on Django framework(python)
 We strongly recommend to use anaconda and install python in specific env
 
-Steps to be followed
-
+# Steps to be followed
 
 1.	Install Ananconda , follow  https://docs.anaconda.com/anaconda/install/
 2.	Create your env ref: https://docs.conda.io/projects/conda/en/4.6.0/_downloads/52a95608c49671267e40c689e0bc00ca/conda-cheatsheet.pdf 
